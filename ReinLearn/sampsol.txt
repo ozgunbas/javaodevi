@@ -1,0 +1,25 @@
+RESULTS
+-------
+State 1: Utility: -1 Policy:NONE
+State 2: Utility: 0.95 Policy:SCARLET
+State 3: Utility: -1 Policy:NONE
+State 4: Utility: 0.9 Policy:SCARLET
+State 5: Utility: 0.95 Policy:GRAY
+State 6: Utility: 0.9 Policy:SCARLET
+State 7: Utility: 0.9 Policy:SCARLET
+State 8: Utility: 0.95 Policy:SCARLET
+State 9: Utility: 1 Policy:NONE
+State 10: Utility: 1 Policy:NONE
+
+RESULTS
+-------
+State 1: Utility: -1 Policy:NONE
+State 2: Utility: 0.93 Policy:SCARLET
+State 3: Utility: -1 Policy:NONE
+State 4: Utility: 0.72 Policy:GRAY
+State 5: Utility: 0.05 Policy:GRAY
+State 6: Utility: -0.04 Policy:SCARLET
+State 7: Utility: 0.26 Policy:SCARLET
+State 8: Utility: 0.84 Policy:BLACK
+State 9: Utility: 1 Policy:NONE
+State 10: Utility: 1 Policy:NONE

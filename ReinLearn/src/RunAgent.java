@@ -1,4 +1,6 @@
 import java.text.DecimalFormat;
+import java.util.Random;
+
 
 //Author:Erdeniz Bas
 public class RunAgent {
@@ -21,18 +23,19 @@ public class RunAgent {
 				System.out.print(p.toString());
 				TransTable.Trans t = st.getTrans(p.getStatenumber());
 				TransTable.NewSt ns = t.getNext();
-				Place maxp = ns.to;
-				double max = maxp.getUtility();
+				Place maxp = goRand(ns);
+				double max = calcAddUtil(ns); 
 				Action act = t.getAct();
 				for(int i = 0; i < 2; i++)
 				{
 				
 					t = t.next();
 					ns = t.getNext();
-					if(max < ns.to.getUtility())
+					double calced = calcAddUtil(ns);
+					if(max < calced)
 					{
-						max = ns.to.getUtility();
-						maxp = ns.to;
+						max = calced;
+						maxp = goRand(ns);
 						act = t.getAct();
 					}
 				}
@@ -49,6 +52,28 @@ public class RunAgent {
 		System.out.println("RESULTS");
 		System.out.println("-------");
 		PlaceTable.printTable(); 
+	}
+
+	private static double calcAddUtil(TransTable.NewSt ns) {
+		double max = ns.to.getUtility() * ns.prob;
+		if(ns.ns != null)
+		{
+			max += ns.ns.prob * ns.ns.to.getUtility();
+			max += ns.ns.ns.prob * ns.ns.ns.to.getUtility();
+		}
+		return max;
+	}
+
+	private static Place goRand(TransTable.NewSt ns) {
+		if(ns.ns == null)
+			return ns.to;
+		double x = new Random().nextDouble();
+		if(x<ns.prob)
+			return ns.to;
+		else if(x<(ns.prob + ns.ns.prob))
+			return ns.ns.to;
+		else
+			return ns.ns.ns.to;
 	}
 
 }

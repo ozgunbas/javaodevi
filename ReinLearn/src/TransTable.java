@@ -5,7 +5,7 @@ import java.util.Hashtable;
 public class TransTable extends Table {
 	private Hashtable<Integer,Trans> tl;
 	public TransTable() {
-		super("transitions.txt");
+		super("rand_transitions.txt");
 		
 	}
 	class NewSt
@@ -67,6 +67,11 @@ public class TransTable extends Table {
 		Trans read = new Trans(PlaceTable.numToPlace(Integer.parseInt(linesp[0])), translateAct(linesp[1]));
 		NewSt fnext = new NewSt(PlaceTable.numToPlace(Integer.parseInt(linesp[2])), Double.parseDouble(linesp[3]));
 		read.addNext(fnext);
+		if(linesp.length > 4)
+		{
+			fnext.ns = new NewSt(PlaceTable.numToPlace(Integer.parseInt(linesp[4])), Double.parseDouble(linesp[5]));
+			fnext.ns.ns = new NewSt(PlaceTable.numToPlace(Integer.parseInt(linesp[6])), Double.parseDouble(linesp[7]));
+		}
 		Trans head = tl.get(read.getFrom().getStatenumber());
 		if(head == null)
 			tl.put(read.getFrom().getStatenumber(), read);
